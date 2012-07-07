@@ -74,10 +74,12 @@
 		//
 		// Set overlay classes
 		//
+        //给我们生成的显示蒙板的<div>设置id="loading-indicator-xxx-overlay"
 		jQuery(overlayDiv).attr('id', 'loading-indicator-' + indicatorID + '-overlay');
 		
 		jQuery(overlayDiv).addClass('loading-indicator-overlay');
 		
+        //叠加加上用户自定义的样式
 		if ( settings.addClass ){
 			jQuery(overlayDiv).addClass(settings.addClass + '-overlay');
 		}
@@ -157,7 +159,7 @@
 		var indicatorLeft = overlay_left_pos;
 		
 		if ( settings.marginLeft ) {
-			indicatorLeft += parseInt(settings.marginTop);
+			indicatorLeft += parseInt(settings.marginLeft);
 		}
 		
 		

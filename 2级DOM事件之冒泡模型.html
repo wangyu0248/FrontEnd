@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">  
+    <head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  
+    <title>浏览器事件机制??冒泡处理</title>  
+    <style>  
+         div {border:1px  solid blue;}   
+         div#divGrandpa {padding:40px;background-color:#aaaaaa;}   
+         div#divFather {padding:40px;background-color:#bbbbbb;}   
+         div#divSon {padding:40px;background-color:#cccccc;}   
+    </style>  
+    </head>  
+     <body>  
+         <center>
+         <div id="divGrandpa" style="width:300px;height:200px;" >  
+           <div id="divFather" style="width:200px;height:120px;" >  
+                <div id="divSon" style="width:100px;height:40px;" >  
+                    点击我   
+                </div>  
+           </div>  
+       </div>  
+       </center>
+    <script>  
+        function showSon() {   
+            alert("I am son");   
+        }   
+        function showFather() {   
+            alert("I am father");   
+        }   
+        function showGrandpa(e) {   
+            alert("I am Grandpa");
+            //e.stopPropagation();加了这句和true结合，就能将事件截止在传播阶段
+        }   
+        var grandpa = document.getElementById("divGrandpa");   
+        var father = document.getElementById("divFather");   
+        var son = document.getElementById("divSon");   
+        if(window.addEventListener){   
+            grandpa.addEventListener("click", showGrandpa, true);
+            father.addEventListener("click", showFather, true);   
+            son.addEventListener("click", showSon, true);   
+        }else if (window.attachEvent){   
+            grandpa.attachEvent("onclick", showGrandpa);   
+            father.attachEvent("onclick", showFather);   
+            son.attachEvent("onclick", showSon);   
+        }   
+    </script>       
+    </body>  
+</html> 

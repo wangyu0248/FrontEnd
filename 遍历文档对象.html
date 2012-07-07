@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+    <p>bihao</p>
+    <script type="text/javascript">
+        function countTags(n){
+            var numtags = 0;
+            if( n.nodeType == 1 ) //Node.ELEMENT_NODE
+                numtags++;
+            var children = n.childNodes;
+            var length=children.length;
+            for( var i=0 ; i<length ; i++ ){
+                numtags += countTags( children[i] );
+            }
+            return numtags;
+        }
+        window.onload=function(){
+            var res=countTags(document);
+            alert(res);
+        };
+    </script>
+</body>
+</html>

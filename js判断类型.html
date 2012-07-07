@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+    <script>
+        
+        //var tt=[1];
+        //alert(Array.prototype.toString.apply(tt));
+        //alert(Object.prototype.toString.apply(tt));
+        //var browser ="";
+        
+        /*
+         *for/in 遍历navigator属性
+         */
+        //for(var pro in navigator){
+        //    browser += pro+':'+navigator[pro]+'\n'
+        //}
+        //alert(browser);
+
+        var test={};
+        test.go=(function(){
+            alert('ggg');
+        });
+        var res="";
+        for(var fun in test){
+            res += fun+':'+test[fun]+"\n";
+        }
+        alert(res);
+    </script>
+</body>
+</html>
+

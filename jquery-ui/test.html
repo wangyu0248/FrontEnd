@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <style type="text/css">
+            #slider .ui-slider-range {
+                background:url("testimg/range.png") repeat-x scroll 5% 50% #CCCCCC;
+            }
+        
+        </style>
+        <title>jQuery UI Example Page</title>
+		<link type="text/css" href="css/smoothness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+</head>
+<body>
+    <div>
+        <center>
+            <div>
+                <div class="ui-icon ui-icon-play" ></div>
+                <div class="ui-state-default ui-corner-all" title=".ui-icon-play"><span class="ui-icon ui-icon-play"></span></div>
+                <input type="text" name="google" id="test">
+                <div style="width:400px" id="slider"></div>
+                <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;" />
+            </div>
+        </center>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $('#test').datepicker();
+
+            function init(){
+                $( "#slider" ).slider({
+                    range: true,
+                    values:[100,300],min: 50,max: 500,
+			        slide: function( event, ui ) {
+                        $( "#amount" ).val( "$" + ui.values[0] + '--$' + ui.values[1]);
+                    }
+                });
+            }
+            init();
+            $( "#amount" ).val( "$" + $( "#slider" ).slider( "values",0)+'--$'+$( "#slider" ).slider( "values",1));
+            //$("#amount").focusout(function(){
+            //    value = $('#amount').val();
+            //    value = value.substring(1,4);
+            //    init(value);
+            //});
+        });
+    </script>
+</body>
+</html>

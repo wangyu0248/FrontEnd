@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+    <p>!!  Test  !!</p>
+    1212
+    <script type="text/javascript">
+        function getText(n){
+            var strings = [];
+            getString(n,strings);
+            return strings.join("");
+
+            function getString(n,strings){
+                if( n.nodeType == 3 )
+                    strings.push( n.data );
+                else if( n.nodeType == 1 ){
+                    for(var i = n.firstChild ; i != null ; i=i.nextSibling)
+                        getString(i,strings);
+                }
+            }
+        }
+
+        window.onload=function(){
+            alert(getText(document.body));
+        }
+    </script>
+</body>
+</html>

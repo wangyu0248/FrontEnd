@@ -1,0 +1,47 @@
+<html>
+<head>
+<style type="text/css">
+ #skyline {
+    width: 400px; height: 200px;
+    background: url(test-3.jpg);
+    margin: 10px auto; padding: 0;
+    position: relative;}
+  #skyline li {
+    margin: 0; padding: 0; list-style: none;
+    position: absolute; top: 0;}
+  #skyline li, #skyline a {
+    height: 200px; display: block;
+    border: solid 1px red;	
+}
+
+  #panel1b {left: 0; width: 95px;background-color:red;}
+  #panel2b {left: 96px; width: 75px;}
+  #panel3b {left: 172px; width: 110px;}
+  #panel4b {left: 283px; width: 117px;}
+
+ #panel1b a:hover {
+    background: transparent url(test-3.jpg)
+    0 -200px no-repeat;}
+  #panel2b a:hover {
+    background: transparent url(test-3.jpg)
+    -96px -200px no-repeat;}
+  #panel3b a:hover {
+    background: transparent url(test-3.jpg)
+    -172px -200px no-repeat;}
+  #panel4b a:hover {
+    background: transparent url(test-3.jpg)
+    -283px -200px no-repeat;}
+</style>
+</head>
+<body>
+
+ <ul id="skyline">
+    <li id="panel1b"><a href="#1"></a></li>
+    <li id="panel2b"><a href="#2"></a></li>
+    <li id="panel3b"><a href="#3"></a></li>
+    <li id="panel4b"><a href="#4"></a></li>
+  </ul>
+
+
+</body>
+<html>

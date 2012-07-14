@@ -12,40 +12,81 @@
 		<link type="text/css" href="css/smoothness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.tmpl.js"></script>
 </head>
 <body>
     <div>
         <center>
             <div>
-                <div class="ui-icon ui-icon-play" ></div>
+                <div class="ui-icon ui-icon-circle-close" ></div>
                 <div class="ui-state-default ui-corner-all" title=".ui-icon-play"><span class="ui-icon ui-icon-play"></span></div>
                 <input type="text" name="google" id="test">
-                <div style="width:400px" id="slider"></div>
+                <br>
+                <br>
+                <div style="width:400px">
+                    <div style="width:400px" id="slider"></div>
+                    <div id="interval" style="width:450px;text-align:right;">
+                        <script id="tmplInterval" type="text/x-jquery-tmpljavascript">
+                            <div id="0" style="width:40px;float:left;display:inline-block;text-align:left">${num0}</div>
+                            <div id="1" style="margin-left:10.5px;width:40px;float:left;display:inline-block">${num1}</div>
+                            <div id="2" style="width:80px;float:left;display:inline-block">${num2}</div>
+                            <div id="3" style="width:80px;float:left;display:inline-block">${num3}</div>
+                            <div id="4" style="width:80px;float:left;display:inline-block">${num4}</div>
+                            <div id="5" style="width:80px;float:left;display:inline-block">${num5}</div>
+                        </script>
+                    </div>
                 <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;" />
             </div>
         </center>
     </div>
     <script type="text/javascript">
+        window.onload=function(){
+            $('#interval').html($('#tmplInterval').tmpl({
+                'num0':'10',
+                'num1':'20',
+                'num2':'53',
+                'num3':'100',
+                'num4':'180',
+                'num5':'321',
+            }));
+        }
+            
         $(function(){
-            $('#test').datepicker();
+            /**
+             *slider需要创建slider区域的id或class
+             *display显示结果区域的id或class
+             *interval显示区间的id或class
+             */
 
-            function init(){
-                $( "#slider" ).slider({
+        function init(){
+            function parse(val){
+                var res={};
+                res.i=parseInt(val/200);
+                res.percent=val%200/200.00;
+                return res;
+            }
+            function addSlider(sliderDiv,displayDiv,intervalDiv){
+                $(sliderDiv).slider({
                     range: true,
-                    values:[100,300],min: 50,max: 500,
+                    min:0,max:1000,//这里不对min:max赋值是无效的
+                    values:[0,1000],
 			        slide: function( event, ui ) {
-                        $( "#amount" ).val( "$" + ui.values[0] + '--$' + ui.values[1]);
+                        var res1=parse(ui.values[0]);
+                        var min1=$(intervalDiv+" #"+res1.i).html() - 0;
+                        var max1=$(intervalDiv+" #"+(res1.i+1)).html() - 0;
+                        var min =parseInt( min1+(max1-min1)*res1.percent );
+                        var res2=parse(ui.values[1]);
+                        var min2=$(intervalDiv+" #"+res2.i).html() - 0;
+                        var max2=$(intervalDiv+" #"+(res2.i+1)).html() - 0;
+                        var max =parseInt( min2+(max2-min2)*res2.percent );
+                        $(displayDiv).val( "$" + min + '--$' + max);
                     }
                 });
             }
-            init();
-            $( "#amount" ).val( "$" + $( "#slider" ).slider( "values",0)+'--$'+$( "#slider" ).slider( "values",1));
-            //$("#amount").focusout(function(){
-            //    value = $('#amount').val();
-            //    value = value.substring(1,4);
-            //    init(value);
-            //});
-        });
+            addSlider('#slider','#amount','#interval');
+        }
+        init();
+    });
     </script>
 </body>
 </html>

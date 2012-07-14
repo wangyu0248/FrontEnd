@@ -8,23 +8,23 @@
  *
  * Modefied by wangyu 2012.07
  */
-
+  
 	jQuery.fn.showLoading = function(options) {
 		
-		var indicatorID;
+        var indicatorID;
        	var settings = {
-       		'addClass': '',
-	       	'beforeShow': '', 
-       		'afterShow': '',
-       		'hPos': 'center', 
-	       	'vPos': 'center',
-       		'indicatorZIndex' : 5001, 
-       		'overlayZIndex': 5000, 
-	       	'parent': '',
-       		'marginTop': 0,
-       		'marginLeft': 0,
-	       	'overlayWidth': null,
-       		'overlayHeight': null
+            'addClass': '',
+            'beforeShow': '', 
+            'afterShow': '',
+            'hPos': 'center', 
+            'vPos': 'center',
+            'indicatorZIndex' : 5001, 
+            'overlayZIndex': 5000, 
+            'parent': '',
+            'marginTop': 0,
+            'marginLeft': 0,
+            'overlayWidth': null,
+            'overlayHeight': null
 	    };
 
 		jQuery.extend(settings, options);
@@ -39,7 +39,9 @@
         }else{
             //default method
             var loadingDiv = jQuery('<div></div>');
-		    jQuery(loadingDiv).addClass('loading-indicator');
+            if(!settings.nopic){
+                jQuery(loadingDiv).addClass('loading-indicator');
+            }        
         }
 		var overlayDiv = jQuery('<div></div>');
 

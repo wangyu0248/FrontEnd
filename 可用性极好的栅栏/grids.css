@@ -1,0 +1,54 @@
+.grid {
+  width:1000px;
+  margin:auto;
+  border:1px solid black;
+}
+  /*清除浮动,使容器的高度生效，否则是0*/
+  .grid:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  /*如果外层容器有paddind，右侧不用，采用格子自身的右侧padding*/
+  .grid-pad {
+    padding: 20px 0 20px 20px;
+  }
+  .grid-pad > [class*='col-']:last-of-type {
+    padding-right:20px;
+  }
+/*设定IE盒子模型，其width作用于padding，border外部*/
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/*每个格子作为容器，设定右侧padding(除最后一个外)，作为分隔线*/
+[class*='col-'] {
+  float: left;
+  //background-color:lightgreen;
+  padding-right:20px;
+}
+[class*='col-']:last-of-type {
+  padding-right:0;
+}
+/*设定不同格子比例*/
+.col-2-3 {
+  width: 66.66%;
+}
+.col-1-3 {
+  width: 33.33%;
+}
+.col-1-2 {
+  width: 50%;
+}
+.col-1-4 {
+  width: 25%;
+}
+.col-1-8 {
+  width: 12.5%;
+}
+.module {
+  background:lightgreen;
+  padding:1px;
+}
+

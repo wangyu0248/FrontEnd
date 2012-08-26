@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <script type="text/javascript" src="jquery-1.7.2.js"></script>
+        <script type="text/javascript" src="jquery.ValidJSON.js"></script>
+        <script type="text/javascript" src="jsonschema-b2.js"></script>
+	<meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        $(document).load(function(){
+            $.setValidJSONSchemas({
+            
+            })
+            function f(j, v) {
+                alert('22');
+                alert(v.valid+" : "+v.errors[0].message) 
+            };
+            $.getValidJSON({
+                "url":"test.json",
+                "data":{"longitude":333, "latitude":123},
+                "callback":"f", 
+                "schema": {"send":"geothingy","receive":"geothingy"}
+            });
+        });
+    </script>
+</head>
+<body>
+	
+</body>
+</html>

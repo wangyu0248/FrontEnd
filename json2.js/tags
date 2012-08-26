@@ -1,0 +1,31 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+1	json2.js	/^						v = '[' + partial.join(',') + ']';$/;"	s
+1	json2.js	/^						v = '[\\n' + gap + partial.join(',\\n' + gap) + '\\n' + mind + ']';$/;"	s
+1	json2.js	/^						v = '[]';$/;"	s
+1	json2.js	/^                        function or an array of strings.$/;"	f
+1	json2.js	/^                    function f(n) {$/;"	f
+1	json2.js	/^                    indent += ' ';$/;"	s
+1	json2.js	/^                result += '"'$/;"	s
+1	json2.js	/^                var result = '"';$/;"	s
+1	json2.js	/^            The optional reviver parameter is a function that can filter and$/;"	f
+1	json2.js	/^            a replacer function to replace those with JSON values.$/;"	f
+1	json2.js	/^            function walk(holder, key) {$/;"	f
+1	json2.js	/^            gap = '';$/;"	s
+1	json2.js	/^            indent = '';$/;"	s
+1	json2.js	/^    function f(n) {$/;"	f
+1	json2.js	/^    function quote(string) {$/;"	f
+1	json2.js	/^    function str(key, holder) {$/;"	f
+1	json2.js	/^\/\/ If there is a replacer, it must be a function or an array.$/;"	f
+1	json2.js	/^\/\/ In the third stage we use the eval function to compile the text into a$/;"	f
+1	json2.js	/^\/\/ each name\/value pair to a reviver function for possible transformation.$/;"	f
+Date	json2.js	/^        Date.prototype.toJSON = function (key) {$/;"	c
+Date.toJSON	json2.js	/^        Date.prototype.toJSON = function (key) {$/;"	m
+JSON	json2.js	/^var JSON;$/;"	v
+String	json2.js	/^        String.prototype.toJSON      =$/;"	c
+String.toJSON	json2.js	/^        String.prototype.toJSON      =$/;"	m
+f	json2.js	/^    function f(n) {$/;"	f

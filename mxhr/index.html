@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+	<title>Multipart XHR</title>
+
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.1/build/reset-fonts-grids/reset-fonts-grids.css"> 	
+
+	<style type="text/css">
+		#doc { width: 800px; }
+
+		h1 { margin: 4px 0 10px; font-size: 18px; }
+		p { width: 400px; margin: 0 0 14px; color: #888; font-size: 11px; }
+
+		#normal-output { margin-top: 14px; }
+	</style>
+
+</head>
+<body>
+
+<div id="doc">
+
+	<div id="hd">
+		<h1>Multipart XHR Test</h1>
+		<p>
+			Download the <a href="mxhr.zip">PHP and JavaScript source code</a> to run this yourself.
+		</p>	
+	</div>
+	<div id="bd">
+
+		<div id="mxhr-output">
+			<div id="mxhr-timing">&nbsp;</div>
+		</div>
+
+		<div id="normal-output">
+			<div id="normal-timing">&nbsp;</div>
+		</div>
+
+		<script src="mxhr.js"></script>
+		<script>
+
+			// --------------------------------------
+			// Test code
+			// --------------------------------------
+
+			var totalImages = 0;
+
+			F.mxhr.listen('image/png', function(payload, payloadId) {
+				var img = document.createElement('img');
+				img.src = 'data:image/png;base64,' + payload;
+				document.getElementById('mxhr-output').appendChild(img);
+
+				totalImages++;
+			});
+
+			F.mxhr.listen('text/html', function(payload, payloadId) {
+				console.log('Found text/html payload:', payload, payloadId);
+			});
+
+			F.mxhr.listen('text/javascript', function(payload, payloadId) {
+				eval(payload);
+			});
+
+			F.mxhr.listen('complete', function() {
+
+				var time = (new Date).getTime() - streamStart;
+				document.getElementById('mxhr-timing').innerHTML = '<p>' + totalImages + ' images in a multipart stream took: <strong>' + time + 'ms</strong> (' + (Math.round(100 * (time / totalImages)) / 100) + 'ms per image)</p>';
+		
+				var normalStart = (new Date).getTime();
+				var img;
+				for (var i = 0, last = 300; i < last; i++) {
+					img = document.createElement('img');
+					img.src = '/mxhr/icon_check.png?nocache=' + (new Date).getTime() * Math.random();
+					img.width = 28;
+					img.height = 22;
+					document.getElementById('normal-output').appendChild(img);
+
+					var count = 0;
+					img.onload = function() {
+						count++;
+						if (count === last) {
+							var time = (new Date).getTime() - normalStart;
+							document.getElementById('normal-timing').innerHTML = '<p>' + last + ' normal, uncached images took: <strong>' + time + 'ms</strong> (' + (Math.round(100 * (time / count)) / 100) + 'ms per image)</p>';
+						}
+					};
+				}
+			});
+
+			var streamStart = (new Date).getTime();
+			F.mxhr.load('/mxhr/mxhr_test.php?send_stream=1');
+
+		</script>
+
+	</div>
+	<div id="ft"></div>
+
+</div>
+
+</body>
+</html>
